@@ -1,6 +1,6 @@
 <?php
 $apiTitle='Webolytics Wordpress Forms Plugin';
-$apiVersion='1.0.0';
+$apiVersion='1.0.0'; 
 /*
 Plugin Name: Webolytics Forms  
 Version: 1.0.0
