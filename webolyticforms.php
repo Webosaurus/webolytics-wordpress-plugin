@@ -91,9 +91,7 @@ function webolytics_admin_menu() {
 add_action('init', 'register_webolytics_scripts');
 function register_webolytics_scripts() {
 	wp_register_script( 'webolytics_form_script', plugins_url('/js/webolytics.js', __FILE__), array('jquery'), '2.5.1' );
-	//wp_register_script( 'webolytics_form_script', plugins_url('/js/webolytics.js', __FILE__), false, '1.0.0', 'all');
     
-    //wp_register_style( 'webolytics_form_style_bootstrap', plugins_url('/css/bootstrap.min.css', __FILE__), false, '1.0.0', 'all');
 
     wp_register_style( 'webolytics_form_style_bootstrap', plugins_url('/css/webolytics-bootstrap-grid.css', __FILE__), false, '1.0.0', 'all');
 }
@@ -102,7 +100,7 @@ add_action('wp_enqueue_scripts', 'enqueue_webolytics_style');
 
 function enqueue_webolytics_style(){
 	wp_enqueue_script('webolytics_form_script');
-   wp_enqueue_style( 'webolytics_form_style_bootstrap' );
+    wp_enqueue_style( 'webolytics_form_style_bootstrap' );
 }
 
 add_shortcode("webolyticsform", "webolytics_get_form");

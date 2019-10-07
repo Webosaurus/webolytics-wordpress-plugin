@@ -3,9 +3,17 @@
 function set_variable($variableName,$boolean=false){
 
 	if( 
+		(isset($_SESSION[$variableName])) ||
+		(isset($_COOKIE[$variableName])) ||
 		(isset($_GET[$variableName])) || 
 		(isset($_POST[$variableName])) 
 		){
+		if(isset($_SESSION[$variableName])){
+	        $returnVariable = $_SESSION[$variableName];
+	    }
+	    if(isset($_COOKIE[$variableName])){
+	        $returnVariable = $_COOKIE[$variableName];
+	    }
 	    if(isset($_POST[$variableName])){
 	        $returnVariable = $_POST[$variableName];
 	    }
@@ -778,7 +786,7 @@ if($result['status']=="201" ){
 	} else {
 		$aqid = set_variable('AQID');
 	}
-    
+	
 	$renderForm = '<div class="webolytics-forms">'.
 				'<form action="" method="post" >';
 	if(isset($msg )){
@@ -806,8 +814,8 @@ if($result['status']=="201" ){
         $checkBrowser = get_browser_info();
         $currentURL = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-        //$renderForm .= '<input type="hidden" name="trackingData[ip]" value="'.$_SERVER['REMOTE_ADDR'].'" /> ';
-        $renderForm .= '<input type="hidden" name="trackingData[ip]" value="151.231.228.134" /> ';
+        $renderForm .= '<input type="hidden" name="trackingData[ip]" value="'.$_SERVER['REMOTE_ADDR'].'" /> ';
+        //$renderForm .= '<input type="hidden" name="trackingData[ip]" value="151.231.228.134" /> ';
         
         if( 
             (isset($_SERVER['HTTP_REFERER'])) && 
