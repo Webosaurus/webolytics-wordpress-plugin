@@ -1260,6 +1260,7 @@ function systems_form_input_type(	$formRowOrder,
 			$response .= $fc['placeholder'];
 		break;
 		case $varFormContentType['form_content_module']['value']:
+		case $varFormContentType['conversion_snippet']['value']:
 			$response .= form_content_modules($fc,$formRowOrder);
 			//print_r($response);
 			

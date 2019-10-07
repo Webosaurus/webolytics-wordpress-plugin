@@ -236,6 +236,7 @@ $label['title_form_hidden_field'] = 'Hidden Field';
 $label['title_form_hidden_country_field'] = 'Hidden Country Field';
 $label['title_form_country_select'] = 'Country Select Field';
 $label['title_free_text'] = 'Free Text';
+$label['title_conversion_snippet'] = 'Conversion Snippet';
 $label['title_number_of_form_groups'] = 'Number of Form Groups';
 $label['title_number_of_campaigns_using_this_form'] = 'Number of Campaigns Using this form';
 $label['title_total_submissions'] = 'Total Submissions';

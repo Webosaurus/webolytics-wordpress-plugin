@@ -31,13 +31,17 @@ Do you have questions or issues with Webolytics Forms? Use these support channel
 
 == Changelog ==
 
-For more information, see [Releases](https://www.webosaurus.co.uk/).
+= 1.0.2 =
 
-= 1.0.0 =
-
-* Initial release
+* Latest Release
 
 == Upgrade Notice ==
  
 = 1.0.0 =
 Just released into the wild.
+
+= 1.0.1 =
+Include cookie tracking for AQID from webolytics clickthrough.
+
+= 1.0.2 =
+Include Form Conversion tracking content to forms.
