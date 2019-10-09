@@ -650,15 +650,6 @@ $varRoles['user_download']['label'] = $label['title_download'];
 $varRoles['user_download']['type'] = $varRoleType['user']['value'];
 
 
-$topNav=array();
-$topNav['admin']['url'] = $siteURL.$adminFolder;
-$topNav['admin']['icon'] = $labelIcon['admin_section'];
-$topNav['admin']['label'] = $label['admin_panel'];
-$topNav['admin']['type'] = $varRoleType['admin']['value'];
-$topNav['portal']['url'] = $siteURL.$clientPortaLFolder;
-$topNav['portal']['icon'] = $labelIcon['dashboard_portal_section'];
-$topNav['portal']['label'] = $label['company_name'];
-$topNav['portal']['type'] = $varRoleType['user']['value'];
 
 $varRolesCRUD=array();
 $varRolesCRUD['not_assigned']['value'] = 0;
