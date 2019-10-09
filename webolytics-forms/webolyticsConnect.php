@@ -876,11 +876,20 @@ if($result['status']=="201" ){
 		if(isset($fg['next_page']))  {
 			$renderForm .= '<div class="webolytics-row">'.
         		'<div class="webolytics-col-md-3">';
-        		$prevLink = '?FGID='.$fgid_p;
-        		if($aqid){
-        			$prevLink .= '&AQID='.$aqid;
+        		if((isset($fgid_p)) && ($fgid_p != '')){
+        			$prevLink = '?FGID='.$fgid_p;
+        		} else {
+        			$prevLink='';
         		}
-                if($fgid_p){
+        		if($aqid){
+        			if($prevLink==''){
+        				$prevLink = '?AQID='.$aqid;
+        			} else {
+        				$prevLink .= '&AQID='.$aqid;
+        			}
+        			
+        		}
+                if((isset($fgid_p)) && ($fgid_p != '')){
                     $renderForm .= '<a href="'.$prevLink.'" '.
                         'class="btn btn-lg " '.
 	                    'style="width:100%;" '.
@@ -951,21 +960,22 @@ function systems_form_input_type(	$formRowOrder,
 	}
 
 	
-
-	if(!isset($formContentType)){
-		//print_r($fc);
-		foreach($varModules as $fmt){
-			if($fmt['label'] == $fc['type']){
-				//$formContentType = $fmt['value'];
-				$formContentType = $varFormContentType['form_content_module']['value'];
-				//print_r($formContentType);
-			}
-		}
-		//print_r($fc['type']);
-	}
 	
 	if(isset($fc['phone']['type'])){
 		$formContentType = $varFormContentType['phone']['value'];
+	} else {
+		if(!isset($formContentType)){
+			//print_r($fc);
+			foreach($varModules as $fmt){
+				//print_r($fmt['label']);
+				if($fmt['label'] == $fc['type']){
+					//$formContentType = $fmt['value'];
+					$formContentType = $varFormContentType['form_content_module']['value'];
+					//print_r($formContentType);
+				}
+			}
+			//print_r($fc['type']);
+		}
 	}
 	
 	//print_r($formContentType.' - '.$fc['type']);
@@ -1258,11 +1268,11 @@ function systems_form_input_type(	$formRowOrder,
  			
 		break;
 		case $varFormContentType['free_text']['value']:
-			$response .= $fc['placeholder'];
+			$response = $fc['placeholder'];
 		break;
 		case $varFormContentType['form_content_module']['value']:
 		case $varFormContentType['conversion_snippet']['value']:
-			$response .= form_content_modules($fc,$formRowOrder);
+			$response = form_content_modules($fc,$formRowOrder);
 			//print_r($response);
 			
 			
