@@ -49,3 +49,12 @@ For more information, see [Releases](https://www.webosaurus.co.uk/).
  
 = 1.0.0 =
 Just released into the wild.
+
+= 1.0.1 =
+Include cookie tracking for AQID from webolytics clickthrough.
+
+= 1.0.2 =
+Include Form Conversion tracking content to forms.
+
+= 1.0.3 =
+Minor bug fixes to remove redundant variables.

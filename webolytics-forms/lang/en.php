@@ -263,7 +263,6 @@ $label['title_second'] = '2nd';
 $label['title_third'] = '3rd';
 $label['title_new_form_assigned_to_campaign_group'] = 'A New Form Has Been Assigned To Your Campaign Group';
 
-
 $label['title_number_of_campaign_groups'] = 'Number of Campaign Groups';
 $label['title_conversions'] = 'Conversions';
 $label['title_conversion_rate_summary'] = 'Conversion Rate Summary';

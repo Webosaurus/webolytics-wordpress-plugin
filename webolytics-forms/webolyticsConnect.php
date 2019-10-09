@@ -953,6 +953,7 @@ function systems_form_input_type(	$formRowOrder,
 	
 
 	if(!isset($formContentType)){
+		//print_r($fc);
 		foreach($varModules as $fmt){
 			if($fmt['label'] == $fc['type']){
 				//$formContentType = $fmt['value'];
