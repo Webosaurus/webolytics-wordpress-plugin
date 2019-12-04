@@ -1,5 +1,16 @@
 <?php
 
+ function detectUserIP(){
+	$curl_handle=curl_init();
+	curl_setopt($curl_handle, CURLOPT_URL,'https://www.iplocate.io/api/lookup/'.$_SERVER['REMOTE_ADDR']);
+	curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
+	curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
+	$query = curl_exec($curl_handle);
+	curl_close($curl_handle);
+	$res = json_decode($query, true);
+	return($res);
+ }	
+
 function set_variable($variableName,$boolean=false){
 
 	if( 
