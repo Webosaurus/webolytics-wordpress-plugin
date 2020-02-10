@@ -1109,7 +1109,7 @@ function systems_form_input_type(	$formRowOrder,
 			}                   
             $response .= '</select>';
             $response .='</div>
-            <div class="col-md-9 col-xs-8">';
+            <div class="webolytics-col-md-9 webolytics-col-xs-8">';
 
             $response .='<input type="text" '.
 							'class="input-name form-control phone-number" '.
