@@ -1278,7 +1278,164 @@ function systems_form_input_type(	$formRowOrder,
 			
 		//$response = false;
 		break;
+		case $varFormContentType['conversion_snippet_catch_postback']['value']:
+			$response = "<script type='text/javascript'> ".
+							"document.addEventListener('DOMContentLoaded', function() { ";
+							if($fc['options'] > 0){
+				            	foreach($fc['options'] as $fcv){
+				            		$response .= "var ".$fcv['label']." = ''; ";
+				            	}
+							}
+			$response .= 		"var params = window.location.search.substring(1).split('&'); ".
+							    
+							    "for (var i=0; i<params.length; i++) { ".
+									"var pair = params[i].split(/=(.+)/); ";
+									if($fc['options'] > 0){
+						            	foreach($fc['options'] as $fcv){
+						            		$response .= "if ((pair[0] == '".$fcv['label']."') && pair[1]) { ".
+												$fcv['label']." = pair[1]; ".
+											"} ";
+						            	}
+									}
+									
+			$response .= 		"} ".
+							    "if ( ";
+							    if($fc['options'] > 0){
+							    	$optionCount = count($fc['options']);
+							    	$oc = 1;
+						            	foreach($fc['options'] as $fcv){
+						            		$response .= $fcv['label'];
+						            		if($oc < $optionCount){
+						            			$response .=" || ";
+						            		}
+						            		$oc ++;
+						            	}
+									}
+			$response .= 		") { ".
+									"var d = new Date(); ".
+									"d.setTime(d.getTime() + (365*24*60*60*1000)); ".
+									"var expires = 'expires=' + d.toUTCString() + '; '; ".
+									"var hostnameParts = window.location.hostname.split('.').reverse(); ".
+									"var domain = hostnameParts[0]; ".
+									"for (var j=1; j<hostnameParts.length; j++) { ".
+									    "domain = hostnameParts[j] + '.' + domain; ".
+									    "document.cookie = 'webolytics___cd=1; ' + expires + 'domain=' + domain + '; path=/; secure; '; ".
+									    "if (document.cookie.indexOf('webolytics___cd=1') > -1) ".
+										"break; ".
+									"} ".
+									"var cookieEnd = '; ' + expires + 'domain=' + domain + '; path=/; secure; '; ".
+									"document.cookie = 'webolytics___cd=' + domain + cookieEnd; ";
+									if($fc['options'] > 0){
+						            	foreach($fc['options'] as $fcv){
+						            		$response .= "if (".$fcv['label'].") { ".
+												"document.cookie = 'webolytics___".$fcv['label']."=' + ".$fcv['label']." + cookieEnd; ".
+											"} ";
+						            	}
+									}
+									
+			$response .= 		"} ".
+
+							"}, false);" .
+						"</script>";
+		break;
+		case $varFormContentType['conversion_snippet_push_postback']['value']:
+			$response = "<script type='text/javascript'> ".
+							"document.addEventListener('DOMContentLoaded', function() { ".
+							"const existingScript = document.getElementById('conversion-postback'); ";
+							if($fc['options'] > 0){
+				            	foreach($fc['options'] as $fcv){
+				            		$response .= "var ".$fcv['label']." = ''; ";
+				            	}
+							}
+			$response .= 	"var params = window.location.search.substring(1).split('&'); ".
+						    "for (var i=0; i<params.length; i++) { ".
+								"var pair = params[i].split(/=(.+)/); ";
+									if($fc['options'] > 0){
+						            	foreach($fc['options'] as $fcv){
+						            		$response .= "if ((pair[0] == '".$fcv['label']."') && pair[1]) { ".
+												$fcv['label']." = pair[1]; ".
+											"} ";
+						            	}
+									}
+									
+			$response .= 	"} ".
+						    "var ca = document.cookie.split(';'); ".
+						    "for (var j=0; j<ca.length; j++) { ".
+								"var c = ca[j].trim().split(/=(.+)/); ";
+								if($fc['options'] > 0){
+					            	foreach($fc['options'] as $fcv){
+					            		$response .= "if (!".$fcv['label']." && (c[0] == 'webolytics___".$fcv['label']."')) { ".
+											$fcv['label']." = c[1]; ".
+										"} ";
+					            	}
+								}
+								
+			$response .= 	"} ".
+
+						    
+						    "if (!existingScript) { ".
+						        "var tag = document.createElement('script'); ".
+						        "tag.id = 'conversion-postback'; ".
+							    "tag.type = 'text/javascript'; ";
+
+							    $response .=  "tag.src = '".$fc['postback'] ; 
+							    if($fc['options'] > 0){
+							    	$optionCount = count($fc['options']);
+							    	$oc = 0;
+							    	$qsAppend=false;
+					            	foreach($fc['options'] as $fcv){
+					            		if($oc < $optionCount){
+						            		if($qsAppend){
+						            			$response .= "&";
+						            		} else {
+						            			$response .= "?";
+						            		}
+					            		}
+					            		$response .= $fcv['label']."=' + ".$fcv['label'];
+					            		
+										$qsAppend=true;
+										$oc ++;
+										if($oc < $optionCount){
+					            			$response .= " + '";
+					            		}
+					            	}
+								}
+							    	$response .= " ; ";
+			$response .= 		"document.body.appendChild(tag); ".
+							"} ".
+
+						    
+						
+						   "}, false); ".
+						"</script>" ;
+		break;
+		case $varFormContentType['file_upload']['value']:
+			$response =	'<div class=" mb-20">'.
+							'<div class="pb-20">'.
+								'<p class="geta">'. $fc['placeholder'].'</p>'.
+								'<input ';
+			if(count($fc['allowed_file_formats']) > 0){
+				$response .= 'accept=" ';
+            	foreach($fc['allowed_file_formats'] as $fcv){
+            		$response .= $fcv['value'].', ';
+	            	
+            	}
+            	$response .= '" ';
+			}					
+			$response .=		'name="'.$fc['name'].'" '.
+								'type="file" '.
+								'class="dropify" ';
+			if($fc['required'] == $varFormFieldRequired['required']['value']){
+				$response .= 'required="required" ';
+			}
+
+			$response .= 	' />'.
+								'<span class="statusMsg"></span>'.
+							'</div>'.
+						'</div>';
+			
 		
+		break;
 	}
 	return $response;
 }

@@ -318,6 +318,15 @@ $varFormContentType['select_country_field']['icon'] = $labelIcon['countries'];
 $varFormContentType['conversion_snippet']['value'] = 15;
 $varFormContentType['conversion_snippet']['label'] = $label['title_conversion_snippet'];
 $varFormContentType['conversion_snippet']['icon'] = $labelIcon['conversion_snippet'];
+$varFormContentType['file_upload']['value'] = 16;
+$varFormContentType['file_upload']['label'] = $label['title_form_file_upload'];
+$varFormContentType['file_upload']['icon'] = $labelIcon['file_upload'];
+$varFormContentType['conversion_snippet_catch_postback']['value'] = 17;
+$varFormContentType['conversion_snippet_catch_postback']['label'] = $label['title_conversion_snippet_catch_postback'];
+$varFormContentType['conversion_snippet_catch_postback']['icon'] = $labelIcon['conversion_snippet'];
+$varFormContentType['conversion_snippet_push_postback']['value'] = 18;
+$varFormContentType['conversion_snippet_push_postback']['label'] = $label['title_conversion_snippet_push_postback'];
+$varFormContentType['conversion_snippet_push_postback']['icon'] = $labelIcon['conversion_snippet'];
 
 /*Form Input Types*/
 $varFormFieldRequired=array();

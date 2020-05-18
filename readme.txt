@@ -58,3 +58,6 @@ Include Form Conversion tracking content to forms.
 
 = 1.0.3 =
 Minor bug fixes to remove redundant variables.
+
+= 1.0.4 =
+Include postback conversion snippets on form pages.
